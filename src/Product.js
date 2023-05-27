@@ -4,10 +4,13 @@ import {data} from "./data";
 import logo from "./images/logo.svg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import avatar from "./images/image-avatar.png";
+import minus from "./images/icon-minus.svg";
+import plus from "./images/icon-plus.svg";
 
 const Product = () => {
     const [products] = useState(data);
     const [value, setValue] = useState(0);
+    const [amount, setAmount] = useState(0)
 
     const { mainImage } = products[value];
 
@@ -41,7 +44,7 @@ const Product = () => {
 
     <section className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10'>
          <article>
-         <img src={mainImage} alt="" className='w-11/12 rounded-2xl'/>
+         <img src={mainImage} alt="" className='w-full rounded-2xl'/>
 
          <ul className='flex items-center justify-start gap-5 flex-wrap mt-5'>
           {products.map((item, index) => (
@@ -56,21 +59,41 @@ const Product = () => {
          </article>
 
          <article>
-          <h2>
+          <h2 className='bg-slate-100 py-1 px-2 
+          text-orange-400 uppercase tracking-wide text-sm 
+          font-bold inline-block rounded shadow mb-10'>
             Sneakers Company
           </h2>
-          <h1>Fall Limited Edition Sneakers</h1>
-          <p>
+          <h1 className='text-slate-900 mb-10 font-bold text-3xl lg:text-4xl'>Fall Limited Edition Sneakers</h1>
+          <p className='text-slate-600 mb-10 leading-relaxed'>
             These low-profile sneakers are your perfect casual wear companion. Featuring a 
             durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
-            <div>
-              <ul>
-              <li>$125.00</li>
-              <li>50%</li>
+            <div className='flex flex-wrap items-center justify-between'>
+              <ul className='flex items-center gap-5'>
+              <li className='text-slate-900 font-bold text-2xl'>$125.00</li>
+              <li className='bg-orange-100 py-1 px-2 
+          text-orange-400 tracking-wide text-sm 
+          font-bold inline-block rounded shadow'>50%</li>
               </ul>
 
-              <p><s>$250.00 </s></p>
+              <p className='text-slate-600 text-sm'><s>$250.00 </s></p>
+            </div>
+
+            <div>
+              <ul>
+              <li>
+                <img src={minus} alt="" />
+              </li>
+              <li>
+                {amount}
+              </li>
+              <li><img src={plus} alt='' /></li>
+              </ul>
+
+              <button>
+                <AiOutlineShoppingCart/> Add to cart
+              </button>
             </div>
          </article>
     </section>
