@@ -4,7 +4,7 @@ import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 export default function Lightbox({products, slideIndex, previousSlide, nextSlide, setShowLightBox}) {
     return(
       <>
-        <article className='bg-black bg-opacity-75 fixed top-0 right-0 left-0 bottom-o z-50 '>
+        <article className='bg-black bg-opacity-75 fixed top-0 left-0 right-0 bottom-o z-50 '>
           <button onClick={() => setShowLightBox(false)}>
           <img src={close} alt="" className='w-10 absolute top-10 right-10' />
           </button>

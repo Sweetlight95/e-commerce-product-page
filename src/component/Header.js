@@ -4,18 +4,23 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import menu from '../images/icon-menu.svg';
 import close from '../images/icon-close.svg'
 import {useState} from 'react';
+import Cart from './Cart';
 
 
 export default function Header() {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+    const [openCart, setOpenCart] = useState(false)
 
     return (
         <>
-            <div className='flex item-center justify-between p-8 border-b border-slate-400 max-w-7xl mx-auto'>
+            <div className='relative flex item-center justify-between p-8 border-b border-slate-400 max-w-7xl mx-auto'>
                 <div className='flex items-center justify-start gap-4'>
       
       <ul className="flex items-center justify-start gap-4"> 
-        <li onClick={() => setIsOpen(true)} className="lg:hidden"><img src={menu} alt="" className="cursor-pointer"/></li>
+        {!isOpen && <li onClick={() => setIsOpen(true)} className="lg:hidden"><img src={menu} alt="" className="cursor-pointer"/></li>}
+        {
+            isOpen && <li onClick={() => setIsOpen(false)} className="lg:hidden close"><img src={close} alt="" className="cursor-pointer w-6"/></li>
+        }
         <li><img src={logo} alt="" /></li>
       </ul>
 
@@ -30,12 +35,13 @@ export default function Header() {
       </nav>
 
     </div>
-    <div>
+    <div className="">
         <ul className='flex items-center justify-start gap-4'>
             <li>
-               <button>
+               <button onClick={() => setOpenCart(!openCart)}>
                 <AiOutlineShoppingCart className='text-2xl text-slate-600'/> 
                </button></li>
+               <li>{openCart && <Cart />} </li>
             <li><img src={avatar} alt='' className='w-12' /></li>
         </ul>
     </div>   
